@@ -9,12 +9,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Wawapi/lunar-surveyor.git"
+    "url": "https://github.com/Onward0131/lunar-surveyor.git"
   },
   "bugs": {
-    "url": "https://github.com/Wawapi/lunar-surveyor/issues"
+    "url": "https://github.com/Onward0131/lunar-surveyor/issues"
   },
-  "homepage": "https://github.com/Wawapi/lunar-surveyor#readme",
+  "homepage": "https://github.com/Onward0131/lunar-surveyor#readme",
   "scripts": {
     "start": "node preview.mjs",
     "check": "node scripts/check.mjs",

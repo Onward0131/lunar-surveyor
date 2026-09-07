@@ -2,7 +2,7 @@
 
 基于Three.js的交互式三维月面与航天模型展示项目，包含**17个模型选项：16套NASA官方发布模型与原创L-03概念车**。支持鼠标旋转、缩放、自由飞行，以及单文件离线体验。
 
-[下载离线版本](https://github.com/Wawapi/lunar-surveyor/releases/latest) · [模型来源](outputs/NASA模型说明.txt) · [许可说明](NOTICE.md) · [反馈问题](https://github.com/Wawapi/lunar-surveyor/issues)
+[下载离线版本](https://github.com/Onward0131/lunar-surveyor/releases/latest) · [模型来源](outputs/NASA模型说明.txt) · [许可说明](NOTICE.md) · [反馈问题](https://github.com/Onward0131/lunar-surveyor/issues)
 
 ## 功能
 
@@ -43,7 +43,7 @@
 
 ### 方式一：直接体验离线版
 
-前往[Releases](https://github.com/Wawapi/lunar-surveyor/releases/latest)，下载以下任一文件：
+前往[Releases](https://github.com/Onward0131/lunar-surveyor/releases/latest)，下载以下任一文件：
 
 - **`lunar-surveyor-17-models.html`**：双击打开，无需安装Node.js或启动服务器。
 - **`lunar-surveyor-17-models-share.zip`**：内含离线HTML、可修改的工程源码、使用说明及来源文件；完整解压后双击“打开月面漫游.html”。
@@ -57,7 +57,7 @@
 需要Git、Node.js22或更高版本及随Node.js提供的npm。开发环境已使用Node.js24验证。
 
 ```sh
-git clone https://github.com/Wawapi/lunar-surveyor.git
+git clone https://github.com/Onward0131/lunar-surveyor.git
 cd lunar-surveyor
 npm start
 ```
@@ -177,4 +177,4 @@ npm run offline
 
 ## 反馈
 
-欢迎通过[Issues](https://github.com/Wawapi/lunar-surveyor/issues)反馈问题。请附上模型名称、操作步骤、浏览器版本和设备信息，便于复现。
+欢迎通过[Issues](https://github.com/Onward0131/lunar-surveyor/issues)反馈问题。请附上模型名称、操作步骤、浏览器版本和设备信息，便于复现。
