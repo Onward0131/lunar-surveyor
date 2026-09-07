@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#06080d" />
+  <title>月面漫游 · Lunar Surveyor</title>
+  <meta name="description" content="探索NASA探测车、着陆器、直升机、空间望远镜与经典航天器模型，自由旋转、缩放和漫游三维月面。" />
+  <link rel="icon" href="data:," />
+  <style>
+    :root {
+      color-scheme: dark;
+      --panel: rgba(6, 9, 14, 0.72);
+      --line: rgba(201, 219, 231, 0.2);
+      --text: #f0f4f5;
+      --muted: #a8b0b4;
+      --accent: #d9ab57;
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #03050a;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    canvas { display: block; }
+
+    .brand {
+      position: fixed;
+      z-index: 2;
+      top: 28px;
+      left: 32px;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .brand::before {
+      content: "";
+      display: block;
+      width: 36px;
+      height: 2px;
+      margin-bottom: 11px;
+      background: var(--accent);
+      box-shadow: 0 0 16px rgba(217, 171, 87, 0.7);
+    }
+
+    .brand h1,
+    .brand p { margin: 0; }
+
+    .brand h1 {
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1;
+      font-weight: 650;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .brand p {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .telemetry {
+      position: fixed;
+      z-index: 2;
+      right: 30px;
+      bottom: 28px;
+      min-width: 188px;
+      padding: 13px 0 0 15px;
+      border-left: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.7;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .telemetry strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .reticle {
+      position: fixed;
+      z-index: 2;
+      left: 50%;
+      top: 50%;
+      width: 18px;
+      height: 18px;
+      margin: -9px 0 0 -9px;
+      border: 1px solid rgba(220, 230, 233, 0.34);
+      border-radius: 50%;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    .reticle::before,
+    .reticle::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      background: rgba(220, 230, 233, 0.58);
+      transform: translate(-50%, -50%);
+    }
+
+    .reticle::before { width: 1px; height: 30px; }
+    .reticle::after { width: 30px; height: 1px; }
+
+    .loading {
+      position: fixed;
+      z-index: 3;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: #03050a;
+      color: #d8e0e2;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      transition: opacity 700ms ease, visibility 700ms ease;
+    }
+
+    .loading.done { opacity: 0; visibility: hidden; }
+
+    @media (max-width: 640px) {
+      .brand { top: 20px; left: 20px; }
+      .brand h1 { font-size: 12px; }
+      .telemetry { right: 18px; bottom: 18px; font-size: 9px; }
+    }
+      body { font-family: "Segoe UI", "Microsoft YaHei", sans-serif; }
+    canvas { position:fixed;inset:0;touch-action:none;outline:none; }
+    .brand { top:32px;left:36px;filter:drop-shadow(0 2px 8px #000); }
+    .brand h1 {font-size:16px;font-weight:500;letter-spacing:.21em;}
+    .brand p {font-size:12px;letter-spacing:.14em;color:#d7dbdf;margin-top:12px;}
+    .brand p span {color:#737e89;}
+    .telemetry {font-size:12px;line-height:2;right:36px;bottom:38px;padding-top:0;border-color:#64707c;min-width:150px;text-shadow:0 1px 5px #000;}
+    .telemetry strong {float:right;padding-left:20px;font-family:ui-monospace,Consolas,monospace;font-weight:400;}
+    .telemetry-title {font-size:10px;color:#a6b2bf;letter-spacing:.18em;margin-bottom:8px;}
+    .corner-note {position:fixed;z-index:2;top:39px;right:36px;display:flex;align-items:center;gap:9px;color:#e5e9eb;font-size:12px;letter-spacing:.08em;}
+    .live-dot {width:5px;height:5px;background:#d5b271;border-radius:50%;box-shadow:0 0 12px #d5b27188;}
+    .controls {position:fixed;z-index:2;bottom:30px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:4px;padding:7px 9px;border:1px solid #a2aab033;border-radius:11px;background:#0d1117d6;backdrop-filter:blur(16px);box-shadow:0 8px 40px #0007;white-space:nowrap;}
+    button {font:inherit;}
+    .controls button {height:40px;padding:0 13px;font-size:14px;letter-spacing:.025em;border:0;border-radius:6px;background:transparent;color:#dbe2e8;cursor:pointer;transition:background .16s,color .16s;}
+    .controls button:hover {background:#ffffff12;color:white;}
+    .controls button:focus-visible {outline:2px solid #d4ad6d;outline-offset:2px;}
+    .controls button[aria-pressed=true] {color:#f5d59b;background:#d5b27118;}
+    #pause {color:#e9cd9f;min-width:90px;}
+    .divider {height:20px;width:1px;background:#ffffff20;margin:0 5px;}
+    .speed {display:flex;align-items:center;gap:10px;padding:0 8px;font-size:12px;color:#aab4bf;}
+    input[type=range] {width:65px;height:3px;accent-color:#d5b271;cursor:pointer;}
+    .speed output {width:30px;font:12px ui-monospace,Consolas,monospace;color:#d6dce3;}
+    .controls .icon-button {width:36px;padding:0;font-size:19px;color:#aebbc5;}
+    .controls #help-toggle {font-size:14px;}
+    .hint {position:fixed;z-index:2;bottom:100px;left:50%;transform:translateX(-50%);font-size:12px;letter-spacing:.07em;color:#c3ccd2cc;white-space:nowrap;text-shadow:0 1px 5px #000;pointer-events:none;}
+    .hint span {padding:0 11px;color:#81909b;}
+    .help {position:fixed;z-index:4;bottom:100px;left:50%;transform:translateX(-50%);width:min(430px,calc(100vw - 32px));padding:22px 25px;background:#0d131bf2;border:1px solid #adb9c33b;border-radius:10px;color:#bcc8d2;font-size:14px;line-height:1.85;backdrop-filter:blur(20px);}
+    .help strong {color:#e9edf0;font-weight:500;}
+    .help p {margin:10px 0 0;}
+    .help .credit {font-size:12px;color:#8495a3;border-top:1px solid #ffffff13;padding-top:12px;}
+    .flight-help {position:fixed;z-index:3;top:92px;left:50%;transform:translateX(-50%);background:#101721bb;padding:11px 17px;border-radius:5px;font-size:13px;color:#d2dce4;white-space:nowrap;}
+    .loading {font-size:14px;letter-spacing:.08em;}
+    @media(max-width:1080px) {.telemetry {bottom:130px;} }
+    @media(max-width:640px) {
+      .brand {left:20px;top:22px;}.brand h1 {font-size:13px;}.brand p {font-size:12px;margin-top:8px;}
+      .corner-note {right:20px;top:25px;font-size:12px;}.telemetry {right:20px;bottom:134px;font-size:12px;}.telemetry-title {display:none;}
+      .controls {bottom:18px;padding:6px;gap:0;max-width:calc(100vw - 24px);}.controls button {font-size:12px;padding:0 9px;min-width:0!important;}.controls .icon-button {width:28px;}.speed,.speed-divider {display:none;}.divider {margin:0 3px;}
+      .hint {bottom:89px;font-size:11px;}.hint span {padding:0 7px;}.flight-help {top:100px;font-size:11px;padding:9px;}
+      .help {bottom:90px;}
+    }
+    @media(prefers-reduced-motion:reduce) {* {transition:none!important;} }
+    .model-panel {position:fixed;z-index:3;left:36px;top:104px;width:296px;max-height:calc(100dvh - 205px);overflow-y:auto;padding:16px 18px 14px;background:linear-gradient(145deg,#10171ddd,#080d13bb);border:1px solid #a2b0bc2b;border-radius:10px;backdrop-filter:blur(16px);box-shadow:0 10px 32px #0003;color:#dce4e9;}
+    .model-panel label {display:block;margin-bottom:9px;font-size:14px;color:#a7b7c3;letter-spacing:.06em;}
+    .model-panel select {display:block;width:100%;min-height:42px;padding:8px 28px 8px 11px;border:1px solid #b2bfc33d;border-radius:5px;background:#141e27;color:#f6e3bf;font:15px "Segoe UI","Microsoft YaHei",sans-serif;cursor:pointer;}
+    .model-panel select:focus-visible,.model-panel a:focus-visible,.model-panel button:focus-visible {outline:2px solid #d4ad6d;outline-offset:3px;}
+    .model-panel p {margin:10px 0 0;font-size:12px;line-height:1.6;color:#aab7c3;}
+    .model-panel a {display:inline-block;margin-top:7px;color:#a3b6c6;font-size:12px;text-decoration:none;border-bottom:1px solid #a3b6c644;}
+    .model-panel a:hover {color:#eed6aa;}
+    .model-panel #model-notice {color:#ecd09a;}
+    .model-panel #model-retry {margin-top:9px;background:#d5b27120;color:#f1d29e;border:1px solid #d5b27166;border-radius:4px;padding:6px 12px;font-size:14px;cursor:pointer;}
+    .model-panel[aria-busy=true] select {border-color:#d5b27180;}
+    .model-heading,.model-browse,.model-tags {display:flex;align-items:center;justify-content:space-between;gap:8px;}
+    .model-heading {margin-bottom:10px;}.model-heading label {margin:0;}
+    .model-heading output {font:12px ui-monospace,Consolas,monospace;color:#d5b271;}
+    .model-browse {margin-top:10px;}.model-browse button {flex:1;min-height:34px;background:#ffffff06;border:1px solid #b2bfc32c;border-radius:5px;color:#d9e0e6;font-size:14px;cursor:pointer;}
+    .model-browse button:hover {background:#d5b27118;border-color:#d5b27160;}
+    .model-tags {justify-content:flex-start;margin-top:12px;font-size:12px;color:#adbbc5;}
+    .model-tags span {border:1px solid #b2bfc326;border-radius:4px;padding:3px 6px;}
+    .model-panel #model-description {font-size:14px;}
+    .model-panel .model-context {font-size:12px;line-height:1.65;color:#8295a4;border-top:1px solid #ffffff12;padding-top:9px;}
+    @media(max-width:640px) {
+      .model-panel {top:92px;left:20px;width:min(270px,calc(100vw - 40px));padding:10px 12px;}
+      .model-panel label {margin-bottom:5px;}.model-panel select {min-height:36px;font-size:14px;}
+      .model-panel p {margin-top:6px;}.model-panel a {margin-top:4px;}
+      .flight-help {top:auto;bottom:116px;max-width:calc(100vw - 32px);white-space:normal;text-align:center;}
+    }
+    @media(max-height:560px) {.model-panel {top:89px;padding:9px 12px;}.model-panel label,.model-panel #model-description {display:none;}.model-panel a {margin-top:5px;}.hint {bottom:87px;}}
+
+</style>
+  
+</head>
+<body>
+  <div class="brand">
+    <h1>Lunar Surveyor</h1>
+    <p>月面漫游<span>／</span><span id="model-english">Perseverance</span></p>
+  </div>
+  <section id="model-panel" class="model-panel" aria-label="航天模型库" aria-busy="true">
+    <div class="model-heading"><label for="model-select">探索模型库</label><output id="model-count" aria-live="polite">01 / 17</output></div>
+    <select id="model-select" aria-label="选择航天模型">
+      <!-- MODEL_OPTIONS_START -->
+      <optgroup label="探测车与机器人">
+        <option value="perseverance" selected>毅力号</option>
+        <option value="curiosity">好奇号</option>
+        <option value="opportunity">机遇号／勇气号</option>
+        <option value="sev">SEV载人探索车</option>
+        <option value="rassor">RASSOR采掘机器人</option>
+        <option value="concept">L-03概念车</option>
+      </optgroup>
+      <optgroup label="着陆器">
+        <option value="apollo">阿波罗登月舱</option>
+        <option value="insight">洞察号着陆器</option>
+        <option value="viking">维京号着陆器</option>
+      </optgroup>
+      <optgroup label="飞行器与火箭">
+        <option value="ingenuity">机智号直升机</option>
+        <option value="shuttle">航天飞机</option>
+        <option value="saturn">土星五号火箭</option>
+      </optgroup>
+      <optgroup label="太空观测与探索">
+        <option value="webb">詹姆斯·韦布空间望远镜</option>
+        <option value="hubble">哈勃空间望远镜</option>
+        <option value="voyager">旅行者探测器</option>
+        <option value="cassini">卡西尼－惠更斯号</option>
+        <option value="iss">国际空间站</option>
+      </optgroup>
+      <!-- MODEL_OPTIONS_END -->
+    </select>
+    <div class="model-browse"><button id="model-prev" type="button">←上一款</button><button id="model-next" type="button">下一款→</button></div>
+    <div class="model-tags"><span id="model-category">探测车与机器人</span><span id="model-mode">轮组行驶</span></div>
+    <p id="model-description">火星探测车 · 六轮巡航</p>
+    <a id="model-credit" href="https://science.nasa.gov/resource/mars-perseverance-rover-3d-model/" target="_blank" rel="noopener noreferrer">NASA/JPL-Caltech</a>
+    <p id="model-notice" role="status" aria-live="polite">正在载入毅力号…</p>
+    <button id="model-retry" type="button" hidden>重试载入</button>
+    <p class="model-context">月面为统一展示环境。航天器按展示比例缩放，飞行动画为艺术性演示。</p>
+  </section>
+  <div class="corner-note"><span class="live-dot"></span><span id="status">跟随探测车</span></div>
+  <div class="telemetry" aria-hidden="true">
+    <div class="telemetry-title">SURFACE TRAVERSE</div>
+    <div>行驶距离 <strong id="distance">000.0m</strong></div>
+    <div>月面坡度 <strong id="grade">0.0&deg;</strong></div>
+  </div>
+  <div class="loading" id="loading">正在构建月面场景…</div>
+
+  <div class="hint">拖动旋转<span>·</span>滚轮缩放<span>·</span>右键平移</div>
+  <nav class="controls" aria-label="场景控制">
+    <button id="pause" type="button" aria-pressed="false">暂停动画</button>
+    <span class="divider"></span>
+    <button id="focus" type="button" title="重新聚焦当前模型（R）">聚焦模型</button>
+    <button id="flight" type="button" aria-pressed="false" title="切换自由飞行（F）">自由飞行</button>
+    <span class="divider speed-divider"></span>
+    <label class="speed" for="speed"><span>速度</span><input id="speed" type="range" min="0.5" max="2" step="0.5" value="1" aria-label="行驶速度" /><output id="speed-label">1.0×</output></label>
+    <button id="fullscreen" class="icon-button" type="button" title="全屏" aria-label="全屏">⛶</button>
+    <button id="help-toggle" class="icon-button" type="button" title="操作说明" aria-label="操作说明">?</button>
+  </nav>
+  <aside id="help" class="help" hidden>
+    <strong>探索月面</strong>
+    <p>左键拖动旋转，滚轮拉近或拉远；右键拖动可平移观察位置。</p>
+    <p>自由飞行：WASD移动，Q/E升降，Shift加速。R回到当前模型，空格暂停动画。</p>
+    <p>左上角按分类选择模型，或使用上一款／下一款逐个浏览。切换后自动聚焦，车速和暂停状态保留。</p>
+    <p class="credit">NASA官方资源库模型与原创L-03概念车。月面是统一展示环境，包含来自不同任务及概念设计的模型；展示比例与动作不是完整任务仿真。地表材质：Poly Haven，CC0。</p>
+  </aside>
+  <p id="flight-help" class="flight-help" hidden>WASD移动 · Q/E升降 · Shift加速 · R返回</p>
+  <script>
+    window.addEventListener('error',function(event){var layer=document.getElementById('loading');if(layer && !layer.classList.contains('done')){layer.textContent='场景加载未完成，请刷新页面重试。';}});
+    setTimeout(function(){var layer=document.getElementById('loading');if(layer && !layer.classList.contains('done'))layer.textContent='场景仍在加载，请稍候；若长时间无响应请刷新页面。';},18000);
+  </script>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>

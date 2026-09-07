@@ -1,0 +1,30 @@
+{
+  "name": "lunar-surveyor",
+  "version": "1.0.0",
+  "description": "Interactive lunar scene with 17 spacecraft and rover models, including 16 official NASA assets.",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Wawapi/lunar-surveyor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Wawapi/lunar-surveyor/issues"
+  },
+  "homepage": "https://github.com/Wawapi/lunar-surveyor#readme",
+  "scripts": {
+    "start": "node preview.mjs",
+    "check": "node scripts/check.mjs",
+    "build": "node outputs/source/build.mjs",
+    "offline": "node export-offline.mjs"
+  },
+  "dependencies": {
+    "three": "0.181.1"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12"
+  }
+}

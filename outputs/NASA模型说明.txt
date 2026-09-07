@@ -1,0 +1,128 @@
+航天模型库来源与处理说明
+更新日期：2026-09-07
+
+共17个模型选项：16套NASA官方发布模型与原创L-03概念车。
+月面是统一展示环境。模型包含火星任务、登月任务、空间观测设施、深空探测器及概念设计，不能将场景当作真实任务记录。
+机遇号与勇气号使用同一种车型，作为一个模型选项。
+
+1. 毅力号 Perseverance
+分类：探测车与机器人
+来源：https://science.nasa.gov/resource/mars-perseverance-rover-3d-model/
+本地文件：assets/models/perseverance.glb
+三角面：199,309；材质：48；内嵌图像：24。
+
+2. 好奇号 Curiosity
+分类：探测车与机器人
+来源：https://science.nasa.gov/resource/curiosity-rover-3d-model/
+本地文件：assets/models/curiosity.glb
+三角面：51,305；材质：9；内嵌图像：9。
+
+3. 机遇号／勇气号 Opportunity / Spirit
+分类：探测车与机器人
+来源：https://science.nasa.gov/resource/spirit-and-opportunity-rover-3d-model/
+本地文件：assets/models/opportunity.glb
+三角面：31,450；材质：9；内嵌图像：12。
+
+4. SEV载人探索车 Space Exploration Vehicle
+分类：探测车与机器人
+来源：https://github.com/nasa/NASA-3D-Resources/tree/master/3D%20Models/Space%20Exploration%20Vehicle
+原文件：https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/3D%20Models/Space%20Exploration%20Vehicle/Space%20Exploration%20Vehicle.glb
+本地文件：assets/models/sev.glb
+三角面：413,198；材质：1；内嵌图像：6。
+
+5. RASSOR采掘机器人 RASSOR
+分类：探测车与机器人
+来源：https://github.com/nasa/NASA-3D-Resources/tree/master/3D%20Models/Regolith%20Advanced%20Surface%20Systems%20Operations%20Robot%20(RASSOR)
+原文件：https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/3D%20Models/Regolith%20Advanced%20Surface%20Systems%20Operations%20Robot%20(RASSOR)/Regolith%20Advanced%20Surface%20Systems%20Operations%20Robot%20(RASSOR).glb
+本地文件：assets/models/rassor.glb
+三角面：2,029,759；材质：1；内嵌图像：0。
+
+6. 阿波罗登月舱 Apollo Lunar Module
+分类：着陆器
+来源：https://github.com/nasa/NASA-3D-Resources/tree/master/3D%20Models/Apollo%20Lunar%20Module
+原文件：https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/3D%20Models/Apollo%20Lunar%20Module/Apollo%20Lunar%20Module.glb
+本地文件：assets/models/apollo.glb
+三角面：97,588；材质：12；内嵌图像：6。
+
+7. 洞察号着陆器 InSight
+分类：着陆器
+来源：https://github.com/nasa/NASA-3D-Resources/tree/master/3D%20Models/InSight%20Cruise%20Lander
+原文件：https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/3D%20Models/InSight%20Cruise%20Lander/InSight%20Cruise%20Lander%20(arm%20deployed).glb
+本地文件：assets/models/insight.glb
+三角面：146,890；材质：11；内嵌图像：22。
+
+8. 维京号着陆器 Viking Lander
+分类：着陆器
+来源：https://github.com/nasa/NASA-3D-Resources/tree/master/3D%20Models/Viking%20Lander
+原文件：https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/3D%20Models/Viking%20Lander/Viking%20Lander.glb
+本地文件：assets/models/viking.glb
+三角面：99,526；材质：9；内嵌图像：0。
+
+9. 机智号直升机 Ingenuity
+分类：飞行器与火箭
+来源：https://github.com/nasa/NASA-3D-Resources/tree/master/3D%20Models/Ingenuity%20Mars%20Helicopter
+原文件：https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/3D%20Models/Ingenuity%20Mars%20Helicopter/Ingenuity%20Mars%20Helicopter.glb
+本地文件：assets/models/ingenuity.glb
+三角面：9,124；材质：10；内嵌图像：16。
+
+10. 航天飞机 Space Shuttle
+分类：飞行器与火箭
+来源：https://github.com/nasa/NASA-3D-Resources/tree/master/3D%20Models/Space%20Shuttle%20(D)
+原文件：https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/3D%20Models/Space%20Shuttle%20(D)/Space%20Shuttle%20(D).glb
+本地文件：assets/models/shuttle.glb
+三角面：19,378；材质：42；内嵌图像：22。
+
+11. 土星五号火箭 Saturn V
+分类：飞行器与火箭
+来源：https://github.com/nasa/NASA-3D-Resources/tree/master/3D%20Models/Saturn%20V
+原文件：https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/3D%20Models/Saturn%20V/Saturn%20V.glb
+本地文件：assets/models/saturn.glb
+三角面：34,814；材质：13；内嵌图像：8。
+
+12. 詹姆斯·韦布空间望远镜 James Webb Space Telescope
+分类：太空观测与探索
+来源：https://github.com/nasa/NASA-3D-Resources/tree/master/3D%20Models/James%20Webb%20Space%20Telescope%20(A)
+原文件：https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/3D%20Models/James%20Webb%20Space%20Telescope%20(A)/James%20Webb%20Space%20Telescope%20(A).glb
+本地文件：assets/models/webb.glb
+三角面：493,785；材质：46；内嵌图像：0。
+
+13. 哈勃空间望远镜 Hubble Space Telescope
+分类：太空观测与探索
+来源：https://github.com/nasa/NASA-3D-Resources/tree/master/3D%20Models/Hubble%20Space%20Telescope%20(B)
+原文件：https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/3D%20Models/Hubble%20Space%20Telescope%20(B)/Hubble%20Space%20Telescope%20(B).glb
+本地文件：assets/models/hubble.glb
+三角面：818,972；材质：0；内嵌图像：0。
+
+14. 旅行者探测器 Voyager
+分类：太空观测与探索
+来源：https://github.com/nasa/NASA-3D-Resources/tree/master/3D%20Models/Voyager%20Probe%20(B)
+原文件：https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/3D%20Models/Voyager%20Probe%20(B)/Voyager%20Probe%20(B).glb
+本地文件：assets/models/voyager.glb
+三角面：20,390；材质：3；内嵌图像：4。
+
+15. 卡西尼－惠更斯号 Cassini–Huygens
+分类：太空观测与探索
+来源：https://github.com/nasa/NASA-3D-Resources/tree/master/3D%20Models/Cassini-Huygens%20(A)
+原文件：https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/3D%20Models/Cassini-Huygens%20(A)/Cassini-Huygens%20(A).glb
+本地文件：assets/models/cassini.glb
+三角面：25,736；材质：8；内嵌图像：6。
+
+16. 国际空间站 International Space Station
+分类：太空观测与探索
+来源：https://github.com/nasa/NASA-3D-Resources/tree/master/3D%20Models/International%20Space%20Station%20(ISS)%20(D)%20(IGOAL)
+原文件：https://raw.githubusercontent.com/nasa/NASA-3D-Resources/master/3D%20Models/International%20Space%20Station%20(ISS)%20(D)%20(IGOAL)/International%20Space%20Station%20(ISS).glb
+本地文件：assets/models/iss.glb
+三角面：2,707,621；材质：49；内嵌图像：220。
+
+处理与展示方式
+- 保留NASA文件中的网格细节、纹理、UV和材质。部分官方模型以材质着色，本身没有位图纹理。
+- 毅力号、好奇号、机遇号／勇气号分别具有六个独立转动轮组；SEV分离为十二轮；RASSOR分离为四轮、双采掘臂与双滚筒。
+- 机智号保留同轴双旋翼并添加相反方向旋转。着陆器驻留，太空模型悬浮展示。
+- 新增模型保留原始Draco压缩几何和内嵌图像；SEV与RASSOR仅追加活动零件分组数据。
+- 运行时按材质合并静态零件、对部分模型调整展示比例，并添加艺术性动画；不代表真实动力学、任务场景或跨车型等比例对比。
+- 模型切换会释放上一模型的图形资源，避免全部模型同时渲染。
+
+NASA官方3D资源目录：https://science.nasa.gov/3d-resources/
+NASA官方资源库：https://github.com/nasa/NASA-3D-Resources
+NASA媒体使用说明：https://www.nasa.gov/nasa-brand-center/images-and-media/
+不表示NASA对本项目的认可或背书，转发时请保留来源与署名。

@@ -1,0 +1,20 @@
+Poly Haven · Gravel Stones
+https://polyhaven.com/a/gravel_stones
+https://api.polyhaven.com/files/gravel_stones
+https://polyhaven.com/license
+License: CC0 1.0. Color, OpenGL normal and roughness maps. Used as an artistic regolith approximation.
+
+Three.js 0.181.1
+https://github.com/mrdoob/three.js
+License: MIT. See THIRD-PARTY-LICENSES.txt.
+
+16 official NASA models: rovers, landers, Ingenuity, spacecraft, observatories, Saturn V and the ISS.
+https://science.nasa.gov/3d-resources/
+https://github.com/nasa/NASA-3D-Resources
+See NASA模型说明.txt for per-model official sources, geometry statistics and processing details.
+Models from different missions and concepts are shown in a shared artistic lunar environment.
+L-03 and the terrain are original procedural concept geometry, not measured lunar elevation data.
+
+Draco 3D Data Compression
+https://github.com/google/draco
+License: Apache License 2.0. See THIRD-PARTY-LICENSES.txt.
