@@ -1,7 +1,19 @@
 {
-  "name": "lunar-surveyor",
+  "name": "astra-vibe-coding-lunar-surveyor",
   "version": "1.0.0",
-  "description": "Interactive lunar scene with 17 spacecraft and rover models, including 16 official NASA assets.",
+  "description": "Vibe-coded with the Astra model: an interactive Three.js lunar explorer with 17 spacecraft and rover models, NASA assets, and offline HTML export.",
+  "keywords": [
+    "astra",
+    "vibe-coding",
+    "ai-assisted-development",
+    "threejs",
+    "webgl",
+    "nasa",
+    "lunar-exploration",
+    "spacecraft",
+    "3d-visualization",
+    "offline"
+  ],
   "private": true,
   "type": "module",
   "engines": {
@@ -9,12 +21,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Onward0131/lunar-surveyor.git"
+    "url": "https://github.com/Onward0131/astra-vibe-coding-lunar-surveyor.git"
   },
   "bugs": {
-    "url": "https://github.com/Onward0131/lunar-surveyor/issues"
+    "url": "https://github.com/Onward0131/astra-vibe-coding-lunar-surveyor/issues"
   },
-  "homepage": "https://github.com/Onward0131/lunar-surveyor#readme",
+  "homepage": "https://github.com/Onward0131/astra-vibe-coding-lunar-surveyor#readme",
   "scripts": {
     "start": "node preview.mjs",
     "check": "node scripts/check.mjs",
